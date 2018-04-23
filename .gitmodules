@@ -1,0 +1,3 @@
+[submodule "xtreme"]
+	path = xtreme
+	url = git@github.com:MarkPaspirgilis/HTML42-Xtreme-Webframework-2.git
