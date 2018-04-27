@@ -1,6 +1,7 @@
 <?php
 $navi = array(
     'index.html' => 'Home',
+    'converter.html' => 'Converter'
 );
 ?>
 <div id="navi_toggler"></div>

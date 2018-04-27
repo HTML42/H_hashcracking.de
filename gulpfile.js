@@ -7,7 +7,8 @@ var config = {
         'less/elements/header.less',
         'less/elements/navigation.less',
         'less/elements/box.less',
-        'less/elements/breadcrumb.less'
+        'less/elements/breadcrumb.less',
+        'less/elements/converter.less'
     ],
     js: [
         'js/project.js',
