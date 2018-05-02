@@ -3,7 +3,7 @@
     <head>
         <?= File::i('components/html_head.php')->get_content() ?>
     </head>
-    <body>
+    <body id="body">
         <?= File::i('components/header.php')->get_content() ?>
         <main>
             <article>##yield##</article>

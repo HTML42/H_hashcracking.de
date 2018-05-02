@@ -1,30 +1,26 @@
 .converter {
-    @box_pth_height: (@distance_normal + @converter_element_height) + @converter_element_height * 3 + @distance_small * 2 + @distance_normal * 2;
     .plain_to_hashes {
-        position: relative;
-        h2 {
-            position: absolute;
-            left: @distance_normal;
-            top: @distance_normal;
-            .h(@converter_element_height);
+        > div, > h2, > input {
+            margin-top: 0;
+            margin-bottom: @distance_normal;
         }
-        @media @media_big {
-            height: @box_pth_height;
+        > :last-child {
+            margin-bottom: 0;
+        }
+        h2 {
+            //.h(@converter_element_height);
         }
     }
     .input, .output {
         border: 1px solid @color_main_normal;
         padding: 0 @distance_small;
         display: block;
-        width: calc(~"50% - @{distance_normal} - @{converter_submit_width}");
-        height: @converter_element_height;
-        position: absolute;
+        width: 100%;
+        .h(@converter_element_height);
     }
     .input {
         background-color: @color_grey_light;
         color: #333;
-        left: @distance_normal;
-        top: (@distance_normal + @converter_element_height) + @distance_normal + @distance_small + @converter_element_height;
         &:hover {
             background-color: #D6D6D6;
         }
@@ -34,24 +30,55 @@
     }
     .output {
         background-color: #222;
-        right: @distance_normal;
-        &.element_0 {
-            top: (@distance_normal + @converter_element_height) + @distance_normal;
+        position: relative;
+        div {
+            border: 1px solid @color_main_normal;
+            padding: @distance_tiny @distance_small;
+            position: absolute;
+            top: -18px;
+            left: 20px;
+            background-color: #222;
+            line-height: 1em;
+            color: @color_grey_dark;
         }
-        &.element_1{
-            top: (@distance_normal + @converter_element_height) + @distance_normal + @distance_small + @converter_element_height;
-        }
-        &.element_2 {
-            top: (@distance_normal + @converter_element_height) + @distance_normal + @distance_small * 2 + @converter_element_height * 2;
+        span {
+            display: block;
+            height: @converter_element_height;
         }
     }
     .submit {
-        position: absolute;
-        left: calc(~"50% - @{converter_submit_width} / 2");
-        top: (@distance_normal + @converter_element_height) + @distance_normal + @distance_small + @converter_element_height - 10px;
-        height: 60px;
-        width: @converter_submit_width;
+        height: 30px;
+        width: 100px;
+        margin: 0 auto;
         border: 1px solid @color_main_normal;
         cursor: pointer;
+        position: relative;
+        span {
+            height: 1px;
+            width: 1px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            &:before, &:after {
+                content: '';
+                position: absolute;
+            }
+            &:after {
+                left: -15px;
+                top: -1px;
+                height: 3px;
+                background-color: @color_main_normal;
+                width: 30px;
+            }
+            &:before {
+                border-top: 3px solid @color_main_normal;
+                border-right: 3px solid @color_main_normal;
+                top: -7px;
+                left: 1px;
+                transform: rotate(45deg);
+                height: 12px;
+                width: 12px;
+            }
+        }
     }
 }
