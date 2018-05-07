@@ -17,4 +17,13 @@
             <span></span>
         </div>
     </div>
+    <div class="box hash_to_plain">
+        <h2>Decrypt hash</h2>
+        <input type="text" class="input" />
+        <div class="submit"><span></span></div>
+        <div class="output" data-output="decrypted">
+            <div>Result</div>
+            <span></span>
+        </div>
+    </div>
 </div>

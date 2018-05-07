@@ -30,4 +30,29 @@ Xtreme_startup_calls.push(function () {
         }
     });
     $('.plain_to_hashes .submit').click(plain_to_hashes);
+    //
+    function hash_to_plain() {
+        var input = $.trim($('.hash_to_plain .input').val());
+        if (input.length) {
+            $.post('ajax/decode.php', {
+                secret: '7sd8f32jkMA!',
+                input: input
+            }, function (response) {
+                if (response.match(/\{.*\}/)) {
+                    var hash = JSON.parse(response);
+                    $('.hash_to_plain [data-output="decrypted"] div').text(hash.algorithm);
+                    $('.hash_to_plain [data-output="decrypted"] span').text(hash.plain);
+                } else {
+                    $('.hash_to_plain [data-output="decrypted"] div').text('Result');
+                    $('.hash_to_plain [data-output="decrypted"] span').text('Could not decrypt it.');
+                }
+            });
+        }
+    }
+    $('.hash_to_plain .input').keyup(function (e) {
+        if (e.originalEvent.keyCode == 13) {
+            hash_to_plain();
+        }
+    });
+    $('.hash_to_plain .submit').click(hash_to_plain);
 });

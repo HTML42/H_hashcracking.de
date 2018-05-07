@@ -9,6 +9,7 @@ $from_own_page = (strstr($_SERVER['HTTP_REFERER'], 'HTML42-hashcracking.de') && 
         (strstr($_SERVER['HTTP_REFERER'], 'hashcracking.de') && !strstr($_SERVER['HTTP_REFERER'], 'localhost'));
 
 if ($input_exists && $from_own_page) {
+    include '../library/hashbank.class.php';
     $input = $_POST['input'];
     $hashes = array(
         "base64" => base64_encode($input),
