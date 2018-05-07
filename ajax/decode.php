@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST['secret'] != '7sd8f32jkMA!') {
-    die();
+   die();
 }
 
 $input_exists = isset($_POST['input']) && is_string($_POST['input']) && strlen($_POST['input']) > 0;
@@ -9,7 +9,6 @@ $from_own_page = (strstr($_SERVER['HTTP_REFERER'], 'HTML42-hashcracking.de') && 
         (strstr($_SERVER['HTTP_REFERER'], 'hashcracking.de') && !strstr($_SERVER['HTTP_REFERER'], 'localhost'));
 
 $answer_found = false;
-
 if ($input_exists && $from_own_page) {
     include '../library/hashbank.class.php';
     $input = trim(strip_tags(stripcslashes($_POST['input'])));
