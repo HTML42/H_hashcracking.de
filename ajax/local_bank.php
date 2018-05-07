@@ -16,7 +16,7 @@ foreach (array(HASHBANK, HASHBANK . 'md5', HASHBANK . 'sha1') as $folder_to_chec
 }
 
 $is_md5 = strlen($input) == 32;
-$is_sha1 = strlen($input) == 42;
+$is_sha1 = strlen($input) == 40;
 
 if ($is_md5 || $is_sha1) {
     $input_p1 = substr($input, 0, 3);

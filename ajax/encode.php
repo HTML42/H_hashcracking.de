@@ -11,6 +11,7 @@ $from_own_page = (strstr($_SERVER['HTTP_REFERER'], 'HTML42-hashcracking.de') && 
 if ($input_exists && $from_own_page) {
     include '../library/hashbank.class.php';
     $input = $_POST['input'];
+    Hashbank::save($input);
     $hashes = array(
         "base64" => base64_encode($input),
         "md5" => md5($input),

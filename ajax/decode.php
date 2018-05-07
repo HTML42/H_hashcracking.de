@@ -14,11 +14,14 @@ if ($input_exists && $from_own_page) {
     include '../library/hashbank.class.php';
     $input = trim(strip_tags(stripcslashes($_POST['input'])));
     $base64_try = base64_decode($input);
-    if (!$answer_found && $base64_try) {
-        $answer_found = json_encode(array(
+    //
+    $should_not_be_base64 = (strlen($input) == 32 || strlen($input) == 40) && substr($input, -1) != '=';
+    //
+    if (!$answer_found && $base64_try && !$should_not_be_base64) {
+        $answer_found = array(
             'algorithm' => 'base64',
             'plain' => $base64_try
-        ));
+        );
     }
     //Try own inner DB
     if (!$answer_found) {
@@ -30,10 +33,10 @@ if ($input_exists && $from_own_page) {
             $folder_3 = $folder_2 . $input_p2 . '/';
             $hashfile = $folder_3 . $input;
             if (is_dir($folder_1) && is_dir($folder_2) && is_dir($folder_3) && is_file($hashfile)) {
-                $answer_found = json_encode(array(
+                $answer_found = array(
                     'algorithm' => $_alghorithm,
                     'plain' => trim(file_get_contents($hashfile))
-                ));
+                );
             }
         }
     }
@@ -42,14 +45,15 @@ if ($input_exists && $from_own_page) {
         $hashbank = Hashbank::decode($input);
         //
         if ($hashbank['result'] && $hashbank['alghorithm']) {
-            $answer_found = json_encode(array(
+            Hashbank::save($hashbank['result']);
+            $answer_found = array(
                 'algorithm' => $hashbank['alghorithm'],
                 'plain' => $hashbank['result']
-            ));
+            );
         }
     }
 }
 if ($answer_found) {
-    echo $answer_found;
+    echo json_encode($answer_found);
 }
 die;
